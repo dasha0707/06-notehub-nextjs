@@ -1,14 +1,12 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import css from './Footer.module.css';
 
-export default function Footer() {
-  const [year, setYear] = useState<number | null>(null);
+async function getCurrentYear() {
+  'use cache';
+  return new Date().getFullYear();
+}
 
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
+export default async function Footer() {
+  const year = await getCurrentYear();
 
   return (
     <footer className={css.footer}>
